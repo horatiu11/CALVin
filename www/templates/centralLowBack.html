@@ -1,3 +1,32 @@
 <ion-view title="Central / Low Back">
-    <ion-content overflow-scroll="true" padding="true" class="has-header"></ion-content>
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+
+        <div class="button-bar">
+            <a onclick="playRecording('record')" class="button button-calm icon ion-play"></a>
+            <a onclick="pausePlayingRecording()" class="button button-calm icon ion-pause"></a>
+            <a onclick="stopPlayingRecording()" class="button button-calm icon ion-stop"></a>
+            <a id="record" class="button button-calm icon ion-record"></a>
+        </div>  
+
+        <h3 align="center">Practice by pronouncing the below examples</h3>
+        <div class="spacer" style="width: 283px; height: 19px;"></div>
+
+        <button class="button button-calm button-block button-large" onclick="play('sounds/Practice/heard.wav', 'bird', 'burn')">Heard</button>
+        <button class="button button-calm button-block button-large" onclick="play('sounds/Practice/hard.wav', 'barn', 'park')">Hard</button>
+        <button class="button button-calm button-block button-large" onclick="play('sounds/Practice/hoard.wav', 'forks', 'caught')">Hoard</button>
+        <div class="spacer" style="width: 283px; height: 30px;"></div>
+        <h3 style="visibility:hidden;" id="ex" align="center">Extra practice!</h3>
+        <button style="visibility:hidden;" id="ex1" class="button button-calm button-block" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound1</button>
+        <button style="visibility:hidden;" id="ex2" class="button button-calm button-block" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound2</button>
+
+        <script>
+
+        document.addEventListener("deviceready", function(){
+            document.getElementById("record").addEventListener('touchstart', function(){startRecording('record')}, false);
+            document.getElementById("record").addEventListener('touchend', stopRecording, false);
+        });
+
+        </script>
+        
+    </ion-content>
 </ion-view>
