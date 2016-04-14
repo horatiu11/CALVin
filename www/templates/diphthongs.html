@@ -1,31 +1,41 @@
 <ion-view title="Diphthongs">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
 
+        <!-- Record bar with the onclick, onTouch and onRelease events that call js functions for 
+        recording, playing, stoping and pausing the actual record -->
         <div class="button-bar">
             <a onclick="playRecording('record')" class="button button-calm icon ion-play"></a>
             <a onclick="pausePlayingRecording()" class="button button-calm icon ion-pause"></a>
             <a onclick="stopPlayingRecording()" class="button button-calm icon ion-stop"></a>
-            <a id="record" class="button button-calm icon ion-record"></a>
+            <a on-touch="onTouch()" on-release="onRelease()" style="color:red;" class="button button-calm icon ion-record"></a>
         </div> 
 
-        <h3 align="center">Practice by pronouncing the below examples</h3>
-        <div class="spacer" style="width: 283px; height: 19px;"></div>
+        <!-- Hidden text that appears once with the step-by-step picture -->
+        <h4 style="visibility:hidden;" id="im1" align="center">Step-by-step instructions</h4>
+        <i><h5 style="visibility:hidden;" id="im2" align="center">Swipe left/right on the image to navigate</h5></i> 
 
-        <button class="button button-calm button-block button-large" onclick="play('sounds/Practice/hayed.wav', 'hate', 'fate')">Hayed</button>
-        <button class="button button-calm button-block button-large" onclick="play('sounds/Practice/hide.wav', 'fight', 'white')">Hide</button>
-        <div class="spacer" style="width: 283px; height: 50px;"></div>
-        <h3 style="visibility:hidden;" id="ex" align="center">Extra practice!</h3>
-        <button style="visibility:hidden;" id="ex1" class="button button-calm button-block" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound1</button>
-        <button style="visibility:hidden;" id="ex2" class="button button-calm button-block" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound2</button>
+        <!-- Place where the step-by-step images are used, having the logo as a placeholder -->
+        <div style="text-align:center;">
+            <img on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()" id="imgid" src="img/placeholder.png" width="100%" height="auto">
+        </div>
 
-        <script>
+        <!-- Buttons for playing the main example sounds -->
+        <div class="button-bar">
+            <a class="button button-calm button-large" onclick="play('sounds/Practice/hayed.wav', 'hate', 'fate'); imgChange('hayed1')">Hayed</a>
+            <a class="button button-calm button-large" onclick="play('sounds/Practice/hide.wav', 'fight', 'white'); imgChange('hide1')">Hide</a>
+        </div>
 
-        document.addEventListener("deviceready", function(){
-            document.getElementById("record").addEventListener('touchstart', function(){startRecording('record')}, false);
-            document.getElementById("record").addEventListener('touchend', stopRecording, false);
-        });
+        <div class="spacer" style="width: 283px; height: 15px;"></div>
+        <h4 style="visibility:hidden;" id="ex" align="center">Extra practice!</h4>
 
-        </script>
+        <!-- Extra practice buttons added dinamically, depending on what main example was clicked -->
+        <div class="button-bar">
+            <a style="visibility:hidden;" id="ex1" class="button button-calm" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound1</a>
+            <a style="visibility:hidden;" id="ex2" class="button button-calm" onclick="playAudio('sounds/Examples/' + this.innerText + '.wav')">Sound2</a>
+        </div>
+
+        <!-- Button for launching animation popover -->
+        <button style="visibility:hidden;" id="ex3" class="button button-calm button-block" ng-click="openPopover($event)">Vowel Animation</button>
         
     </ion-content>
 </ion-view>

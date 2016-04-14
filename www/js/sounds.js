@@ -1,5 +1,6 @@
-
+//Play the sound
 function playAudio(url){
+    //Change path for android devices
     if(device.platform.toLowerCase() === "android") 
         url = "/android_asset/www/" + url;
     // Play the audio file at url
@@ -14,6 +15,7 @@ function playAudio(url){
     my_media.play();
 }
 
+//Show the specific html elements which were hided and call the playAudio function
 function play(url, btn1, btn2) {
     document.getElementById("ex").style.visibility = "visible";
 
@@ -23,17 +25,17 @@ function play(url, btn1, btn2) {
     document.getElementById('ex2').innerText=btn2;
     document.getElementById("ex2").style.visibility = "visible";
 
+    document.getElementById("ex3").style.visibility = "visible";
+
     playAudio(url);
 }
 
-
-var timeout;
-var recording = false;
+//Variables for keeping the records globally
 var RECORD = null;
 var ACTIVE_RECORD = null;
 
 function startRecording(url){
-
+    //Specific android path
     if(device.platform.toLowerCase() === "android") 
         url += ".amr" ;
     else url += ".wav";
@@ -52,26 +54,32 @@ function startRecording(url){
 
 }
 
+//Stop recording
 function stopRecording(){
     RECORD.stopRecord();
 }
 
 function stopPlayingRecording(){
+    //Reset the active recording from playing
     if(ACTIVE_RECORD !== null)
         ACTIVE_RECORD.stop();
 }
 
 function pausePlayingRecording(){
+    //Pause the active recording from playing
     if(ACTIVE_RECORD !== null)
         ACTIVE_RECORD.pause();
 }
 
+//Play recording
 function playRecording(url){
+    //Specific Android path
     if(device.platform.toLowerCase() === "android")
         url += ".amr";
     else 
         url += ".wav";
 
+    //Play recroding if there is one
     if(ACTIVE_RECORD === null){
         
         ACTIVE_RECORD = new Media(url,
