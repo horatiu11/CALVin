@@ -1,0 +1,29 @@
+<ion-view title="Contact Us">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list">
+            <h3 align="center">Need help?</h3>
+            <h3 align="center">Take a minute and contact us!</h3>
+            <div class="spacer" style="width: 283px; height: 20px;"></div>
+
+            <!-- Input and textarea fields for gettinf information about the request -->
+            <label class="item item-input" name="name">
+                <span class="input-label">Full Name</span>
+                <input id="name" style="font-size:large;" type="text" placeholder="Name...">
+            </label>
+            <label class="item item-input" name="email">
+                <span class="input-label">Email</span>
+                <input id="email" style="font-size:large;" type="text" placeholder="Email...">
+            </label>
+            <label class="item item-input" name="phone">
+                <span class="input-label">Phone</span>
+                <input id="phone" style="font-size:large;" type="text" placeholder="Phone number...">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Message</span>
+                <textarea id="message" style="font-size:large;" rows="10" placeholder="Your message..."></textarea>
+            </label>
+        </form>
+        <!-- Button for sending email -->
+        <button class="button button-large button-calm button-block " ng-click="sendFeedback()">Send!</button>
+    </ion-content>
+</ion-view>
